@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="632.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="context" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="632.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devdul.attendancemanagement.Controller.UserManagementController">
    <children>
       <Label layoutY="8.0" prefHeight="48.0" prefWidth="373.0" text="User Management" textFill="#130365" wrapText="true">
          <font>
@@ -23,33 +22,33 @@
             <Insets left="20.0" right="20.0" />
          </padding>
       </Label>
-      <Button layoutX="837.0" layoutY="12.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="111.0" style="-fx-background-color: #000000;" text="Back" textFill="WHITE">
+      <Button layoutX="837.0" layoutY="12.0" mnemonicParsing="false" onAction="#backOnAction" prefHeight="41.0" prefWidth="111.0" style="-fx-background-color: #000000;" text="Back" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
       <Separator layoutY="61.0" prefHeight="5.0" prefWidth="960.0" />
-      <Button layoutX="694.0" layoutY="12.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="126.0" style="-fx-background-color: #08756c;" text="+New User" textFill="WHITE">
+      <Button layoutX="694.0" layoutY="12.0" mnemonicParsing="false" onAction="#addNewUserOnAction" prefHeight="41.0" prefWidth="126.0" style="-fx-background-color: #08756c;" text="+New User" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <TextField layoutX="14.0" layoutY="74.0" promptText="index (username)">
+      <TextField fx:id="txtUsername" layoutX="14.0" layoutY="74.0" promptText="index (username)">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </TextField>
-      <TextField layoutX="507.0" layoutY="74.0" prefHeight="37.0" prefWidth="223.0" promptText="email">
+      <TextField fx:id="txtEmail" layoutX="507.0" layoutY="74.0" prefHeight="37.0" prefWidth="223.0" promptText="email">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </TextField>
-      <TextField layoutX="233.0" layoutY="73.0" prefHeight="39.0" prefWidth="266.0" promptText="name">
+      <TextField fx:id="txtName" layoutX="233.0" layoutY="73.0" prefHeight="39.0" prefWidth="266.0" promptText="name">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </TextField>
-      <TextField layoutX="738.0" layoutY="74.0" prefHeight="37.0" prefWidth="213.0" promptText="password">
+      <TextField fx:id="txtPassword" layoutX="738.0" layoutY="74.0" prefHeight="37.0" prefWidth="213.0" promptText="password">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -72,12 +71,12 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="699.0" layoutY="129.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="252.0" style="-fx-background-color: #08756c;" text="Save User" textFill="WHITE">
+      <Button layoutX="699.0" layoutY="129.0" mnemonicParsing="false" onAction="#saveUserOnAction" prefHeight="41.0" prefWidth="252.0" style="-fx-background-color: #08756c;" text="Save User" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <TextField layoutX="14.0" layoutY="198.0" prefHeight="31.0" prefWidth="938.0" promptText="Search here">
+      <TextField fx:id="txtSearch" layoutX="14.0" layoutY="198.0" prefHeight="31.0" prefWidth="938.0" promptText="Search here">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

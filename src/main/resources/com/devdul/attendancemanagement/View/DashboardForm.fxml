@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="626.0" prefWidth="1062.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devdul.attendancemanagement.Controller.DashboardFormController">
    <children>
-      <AnchorPane layoutX="244.0" prefHeight="632.0" prefWidth="960.0" />
+      <AnchorPane fx:id="context" layoutX="244.0" prefHeight="632.0" prefWidth="960.0" />
       <AnchorPane prefHeight="632.0" prefWidth="244.0" style="-fx-background-color: #808e9b#808e9b;">
          <children>
             <Label prefHeight="99.0" prefWidth="244.0" style="-fx-background-color: #130f40;" text="Attendance management System" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
@@ -15,12 +15,12 @@
                   <Font name="Arial Bold" size="18.0" />
                </font>
             </Label>
-            <Button layoutY="99.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="244.0" text="Dashboard">
+            <Button layoutY="99.0" mnemonicParsing="false" onAction="#dashboardOnAction" prefHeight="78.0" prefWidth="244.0" text="Dashboard">
                <font>
                   <Font name="Arial Bold" size="21.0" />
                </font>
             </Button>
-            <Button layoutY="177.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="244.0" text="User Management">
+            <Button layoutY="177.0" mnemonicParsing="false" onAction="#userManagementOnAction" prefHeight="78.0" prefWidth="244.0" text="User Management">
                <font>
                   <Font name="Arial Bold" size="21.0" />
                </font>
