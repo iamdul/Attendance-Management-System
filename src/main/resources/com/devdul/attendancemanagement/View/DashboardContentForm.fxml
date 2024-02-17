@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="632.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.devdul.attendancemanagement.Controller.DashboardFormController">
+   <children>
+      <Label layoutY="19.0" prefHeight="48.0" prefWidth="256.0" text="Dashboard" textFill="#130365" wrapText="true">
+         <font>
+            <Font name="Arial Bold Italic" size="37.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </Label>
+      <Button layoutX="838.0" layoutY="22.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="109.0" style="-fx-background-color: #000000;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+      <Separator layoutY="75.0" prefHeight="3.0" prefWidth="960.0" />
+      <TextField fx:id="txtSearch" layoutX="11.0" layoutY="85.0" prefHeight="36.0" prefWidth="942.0" promptText="Search Here">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </TextField>
+      <TableView layoutX="13.0" layoutY="137.0" prefHeight="431.0" prefWidth="942.0">
+         <columns>
+            <TableColumn prefWidth="99.0" text="Index" />
+            <TableColumn prefWidth="225.0" text="Name" />
+            <TableColumn prefWidth="197.0" text="Email" />
+            <TableColumn prefWidth="155.0" text="Time" />
+            <TableColumn prefWidth="137.0" text="Option" />
+         </columns>
+      </TableView>
+      <Button layoutX="838.0" layoutY="577.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="109.0" style="-fx-background-color: #6F1E51;" text="Clear All" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+      <Label layoutX="13.0" layoutY="583.0" text="Total Students :" textFill="#130f40">
+         <font>
+            <Font name="Arial Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" ellipsisString="" layoutX="202.0" layoutY="580.0" opacity="0.58" prefHeight="36.0" prefWidth="73.0" style="-fx-background-color: #808e9b#808e9b;" text="45" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -29,25 +29,47 @@ public class LoginFormController {
     public PasswordField txtPassword;
 
     public void studentOnAction(ActionEvent actionEvent) throws IOException,ClassNotFoundException {
+        String username=txtUsername.getText().toLowerCase();
+        String password=txtPassword.getText().trim();
+        try{
+            User selectedUser=login(username);
+            if (selectedUser != null) {
+                if(password.equals(selectedUser.getPassword())){
+                    new Alert(Alert.AlertType.INFORMATION, "Login Successful..!").show();
+                    setUi("MarkAttendanceForm");
+                }else{
+                    new Alert(Alert.AlertType.ERROR, "Wrong Password.!").show();
+                }
+            } else {
+                new Alert(Alert.AlertType.WARNING, "User Not Found").show();
+            }
+        }catch(ClassNotFoundException|SQLException e){
+            new Alert(Alert.AlertType.ERROR,e.toString()).show();
+        }
     }
 
     public void adminOnAction(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
         String username=txtUsername.getText().toLowerCase();
         String password=txtPassword.getText().trim();
-        User selectedUser=login(username);
-        if (selectedUser != null) {
-            System.out.println(selectedUser.getName());
-            setUi("DashboardForm");
-        } else {
-            // Show an error message indicating invalid credentials
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Login Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Invalid username or password!");
-            alert.showAndWait();
+        try{
+            User selectedUser=login(username);
+            if (selectedUser != null) {
+                if(password.equals(selectedUser.getPassword())){
+                    if(selectedUser.getAdmin()){
+                        new Alert(Alert.AlertType.INFORMATION, "Login Successful..!").show();
+                        setUi("DashboardForm");
+                    }else{
+                        new Alert(Alert.AlertType.WARNING, "You are not allowed to login.!").show();
+                    }
+                }else{
+                    new Alert(Alert.AlertType.ERROR, "Wrong Password.!").show();
+                }
+            } else {
+                new Alert(Alert.AlertType.WARNING, "User Not Found").show();
+            }
+        }catch(ClassNotFoundException|SQLException e){
+            new Alert(Alert.AlertType.ERROR,e.toString()).show();
         }
-
-
     }
 
 
@@ -81,7 +103,5 @@ public class LoginFormController {
             return user;
         }
         return null;
-
     }
-
 }
