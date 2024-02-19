@@ -1,12 +1,12 @@
 package com.devdul.attendancemanagement.Controller;
 
-import com.devdul.attendancemanagement.Model.User;
+import com.devdul.attendancemanagement.Model.Admin;
+import com.devdul.attendancemanagement.Model.Student;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
-import java.util.Objects;
 import java.sql.*;
 
 public class LoginFormController {
@@ -29,19 +28,19 @@ public class LoginFormController {
     public PasswordField txtPassword;
 
     public void studentOnAction(ActionEvent actionEvent) throws IOException,ClassNotFoundException {
-        String username=txtUsername.getText().toLowerCase();
+        String index=txtUsername.getText().toLowerCase();
         String password=txtPassword.getText().trim();
         try{
-            User selectedUser=login(username);
-            if (selectedUser != null) {
-                if(password.equals(selectedUser.getPassword())){
+            Student selectedStudent=studentLogin(index);
+            if (selectedStudent != null) {
+                if(password.equals(selectedStudent.getPassword())){
                     new Alert(Alert.AlertType.INFORMATION, "Login Successful..!").show();
                     setUi("MarkAttendanceForm");
                 }else{
                     new Alert(Alert.AlertType.ERROR, "Wrong Password.!").show();
                 }
             } else {
-                new Alert(Alert.AlertType.WARNING, "User Not Found").show();
+                new Alert(Alert.AlertType.WARNING, "Student Not Found").show();
             }
         }catch(ClassNotFoundException|SQLException e){
             new Alert(Alert.AlertType.ERROR,e.toString()).show();
@@ -52,20 +51,16 @@ public class LoginFormController {
         String username=txtUsername.getText().toLowerCase();
         String password=txtPassword.getText().trim();
         try{
-            User selectedUser=login(username);
-            if (selectedUser != null) {
-                if(password.equals(selectedUser.getPassword())){
-                    if(selectedUser.getAdmin()){
-                        new Alert(Alert.AlertType.INFORMATION, "Login Successful..!").show();
-                        setUi("DashboardForm");
-                    }else{
-                        new Alert(Alert.AlertType.WARNING, "You are not allowed to login.!").show();
-                    }
+            Admin selectedAdmin=adminLogin(username);
+            if (selectedAdmin != null) {
+                if(password.equals(selectedAdmin.getPassword())){
+                    new Alert(Alert.AlertType.INFORMATION, "Login Successful..!").show();
+                    setUi("DashboardForm");
                 }else{
                     new Alert(Alert.AlertType.ERROR, "Wrong Password.!").show();
                 }
             } else {
-                new Alert(Alert.AlertType.WARNING, "User Not Found").show();
+                new Alert(Alert.AlertType.WARNING, "Admin Not Found").show();
             }
         }catch(ClassNotFoundException|SQLException e){
             new Alert(Alert.AlertType.ERROR,e.toString()).show();
@@ -84,23 +79,42 @@ public class LoginFormController {
     }
 
     //============================================================
-    private User login(String username) throws ClassNotFoundException, SQLException {
+    private Admin adminLogin(String username) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection=
         DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance","root","1234");
-        String sql="SELECT * FROM user WHERE username=? ";
+        String sql="SELECT * FROM admin WHERE username=? ";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1,username);
         ResultSet resultSet= statement.executeQuery();
         if(resultSet.next()){
-            User user= new User(
+             Admin admin= new Admin(
                     resultSet.getString("username"),
                     resultSet.getString("password"),
                     resultSet.getString("email"),
-                    resultSet.getString("name"),
-                    resultSet.getBoolean("isAdmin")
+                    resultSet.getString("name")
             );
-            return user;
+            return admin;
+        }
+        return null;
+    }
+
+    private Student studentLogin(String index) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection connection=
+                DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance","root","1234");
+        String sql="SELECT * FROM students WHERE `index`=? ";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1,index);
+        ResultSet resultSet= statement.executeQuery();
+        if(resultSet.next()){
+            Student student= new Student(
+                    resultSet.getString("index"),
+                    resultSet.getString("password"),
+                    resultSet.getString("email"),
+                    resultSet.getString("name")
+            );
+            return student;
         }
         return null;
     }

@@ -13,12 +13,20 @@ public class DashboardFormController {
 
     public AnchorPane context;
 
+    public void initialize() throws IOException {
+        setChildrenUi("DashboardContentForm");
+    }
+
     public void dashboardOnAction(ActionEvent actionEvent) throws IOException {
         setChildrenUi("DashboardContentForm");
     }
 
     public void userManagementOnAction(ActionEvent actionEvent) throws IOException {
-        setChildrenUi("UserManagementForm");
+        setChildrenUi("StudentManagementForm");
+    }
+
+    public void adminManagementOnAction(ActionEvent actionEvent) throws IOException {
+        setChildrenUi("AdminManagementForm");
     }
 
     public void setUi(String location) throws IOException {
@@ -36,4 +44,6 @@ public class DashboardFormController {
         context.getChildren().add(FXMLLoader.load(getClass().getResource("/com/devdul/attendancemanagement/View/" + location + ".fxml")));
 
     }
+
+
 }

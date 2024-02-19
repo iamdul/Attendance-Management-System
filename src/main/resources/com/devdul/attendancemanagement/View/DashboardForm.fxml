@@ -20,7 +20,12 @@
                   <Font name="Arial Bold" size="21.0" />
                </font>
             </Button>
-            <Button layoutY="177.0" mnemonicParsing="false" onAction="#userManagementOnAction" prefHeight="78.0" prefWidth="244.0" text="User Management">
+            <Button layoutY="177.0" mnemonicParsing="false" onAction="#userManagementOnAction" prefHeight="78.0" prefWidth="244.0" text="Student Management">
+               <font>
+                  <Font name="Arial Bold" size="21.0" />
+               </font>
+            </Button>
+            <Button layoutY="255.0" mnemonicParsing="false" onAction="#adminManagementOnAction" prefHeight="78.0" prefWidth="244.0" text="Admin Management">
                <font>
                   <Font name="Arial Bold" size="21.0" />
                </font>

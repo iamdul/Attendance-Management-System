@@ -1,21 +1,20 @@
 package com.devdul.attendancemanagement.Model;
 
-public class User {
+public class Admin {
     private String username;
     private String password;
     private String email;
-    private String name;
-    private Boolean isAdmin;
 
-    public User() {
+    public Admin() {
     }
 
-    public User(String username, String password, String email, String name, Boolean isAdmin) {
+    private String name;
+
+    public Admin(String username, String password, String email, String name) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.name = name;
-        this.isAdmin = isAdmin;
     }
 
     public String getUsername() {
@@ -48,13 +47,5 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Boolean getAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(Boolean admin) {
-        isAdmin = admin;
     }
 }
