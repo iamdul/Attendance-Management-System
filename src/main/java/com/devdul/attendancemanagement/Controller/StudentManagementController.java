@@ -144,9 +144,7 @@ public class StudentManagementController {
         if(btn.getText().equalsIgnoreCase("Save Student")) {
             try {
                 if (saveStudent(student)) {
-                    System.out.println(student.getIndex());
                     setIndex();
-                    System.out.println(txtIndex.getText());
                     clear();
                     setTableData(searchText);
                     new Alert(Alert.AlertType.INFORMATION, "Student saved").show();

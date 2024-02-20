@@ -27,6 +27,8 @@ public class LoginFormController {
     @FXML
     public PasswordField txtPassword;
 
+
+
     public void studentOnAction(ActionEvent actionEvent) throws IOException,ClassNotFoundException {
         String index=txtUsername.getText().toLowerCase();
         String password=txtPassword.getText().trim();
@@ -34,8 +36,9 @@ public class LoginFormController {
             Student selectedStudent=studentLogin(index);
             if (selectedStudent != null) {
                 if(password.equals(selectedStudent.getPassword())){
+
                     new Alert(Alert.AlertType.INFORMATION, "Login Successful..!").show();
-                    setUi("MarkAttendanceForm");
+                    setUiWithParams("MarkAttendanceForm",index,selectedStudent.getEmail());
                 }else{
                     new Alert(Alert.AlertType.ERROR, "Wrong Password.!").show();
                 }
@@ -75,6 +78,22 @@ public class LoginFormController {
             System.out.println("Resource is null!");
         }
         stage.setScene(new Scene(loader.load()));
+        stage.centerOnScreen();
+    }
+    public void setUiWithParams(String location,String index,String email) throws IOException {
+        Stage stage = (Stage) context.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/devdul/attendancemanagement/View/" + location + ".fxml"));
+
+
+        if (loader.getLocation() == null) {
+            System.out.println("Resource is null!");
+        }
+
+        AnchorPane root = loader.load();
+        MarkAttendanceFormController markAttendanceFormController = loader.getController();
+        markAttendanceFormController.setFields(index, email);
+        //markAttendanceFormController.initialize();
+        stage.setScene(new Scene(root));
         stage.centerOnScreen();
     }
 

@@ -31,13 +31,13 @@
          </font>
       </Button>
       <Separator layoutY="72.0" prefHeight="3.0" prefWidth="771.0" />
-      <TextField fx:id="txtUsername" layoutX="263.0" layoutY="86.0" prefHeight="31.0" prefWidth="383.0" />
-      <Label contentDisplay="CENTER" layoutX="137.0" layoutY="86.0" prefHeight="31.0" prefWidth="111.0" text="Username">
+      <TextField fx:id="txtIndex" editable="false" layoutX="263.0" layoutY="86.0" prefHeight="31.0" prefWidth="383.0" />
+      <Label contentDisplay="CENTER" layoutX="137.0" layoutY="86.0" prefHeight="31.0" prefWidth="111.0" text="Index">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="txtEmail" layoutX="264.0" layoutY="126.0" prefHeight="31.0" prefWidth="383.0" />
+      <TextField fx:id="txtEmail" editable="false" layoutX="264.0" layoutY="126.0" prefHeight="31.0" prefWidth="383.0" />
       <Label contentDisplay="CENTER" layoutX="138.0" layoutY="126.0" prefHeight="31.0" prefWidth="111.0" text="Email">
          <font>
             <Font name="Arial Bold" size="16.0" />
@@ -53,11 +53,11 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <TableView layoutX="87.0" layoutY="245.0" prefHeight="329.0" prefWidth="611.0">
+      <TableView fx:id="tblAttendance" layoutX="87.0" layoutY="245.0" prefHeight="329.0" prefWidth="611.0">
         <columns>
-          <TableColumn prefWidth="144.0" text="Index" />
-          <TableColumn prefWidth="307.0" text="Name" />
-            <TableColumn prefWidth="159.0" text="Entrance Time" />
+          <TableColumn fx:id="colIndex" prefWidth="144.0" text="Index" />
+          <TableColumn fx:id="colName" prefWidth="307.0" text="Name" />
+            <TableColumn fx:id="colTime" prefWidth="159.0" text="Entrance Time" />
         </columns>
       </TableView>
    </children>

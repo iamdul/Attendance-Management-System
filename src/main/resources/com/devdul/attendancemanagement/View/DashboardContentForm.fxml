@@ -31,26 +31,25 @@
             <Font name="Arial Bold" size="15.0" />
          </font>
       </TextField>
-      <TableView layoutX="13.0" layoutY="125.0" prefHeight="444.0" prefWidth="942.0">
+      <TableView fx:id="tblDashboard" layoutX="13.0" layoutY="125.0" prefHeight="444.0" prefWidth="942.0">
          <columns>
-            <TableColumn prefWidth="99.0" text="Index" />
-            <TableColumn prefWidth="225.0" text="Name" />
-            <TableColumn prefWidth="197.0" text="Email" />
-            <TableColumn prefWidth="155.0" text="Time" />
-            <TableColumn prefWidth="137.0" text="Option" />
+            <TableColumn fx:id="colIndex" prefWidth="173.0" text="Index" />
+            <TableColumn fx:id="colName" prefWidth="316.0" text="Name" />
+            <TableColumn fx:id="colEmail" prefWidth="274.0" text="Email" />
+            <TableColumn fx:id="colTime" prefWidth="178.0" style="-fx-alignment: center;" text="Time" />
          </columns>
       </TableView>
-      <Button layoutX="838.0" layoutY="577.0" mnemonicParsing="false" onAction="#clearAllOnAction" prefHeight="41.0" prefWidth="109.0" style="-fx-background-color: #6F1E51;" text="Clear All" textFill="WHITE">
+      <Button fx:id="btnClearAll" layoutX="838.0" layoutY="577.0" mnemonicParsing="false" onAction="#clearAllOnAction" prefHeight="41.0" prefWidth="109.0" style="-fx-background-color: #6F1E51;" text="Clear All" textFill="WHITE">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <Label layoutX="13.0" layoutY="583.0" text="Total Students :" textFill="#130f40">
+      <Label layoutX="13.0" layoutY="583.0" text="Total Students Presence :" textFill="#130f40">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
       </Label>
-      <Label fx:id="lblTotal" alignment="CENTER" ellipsisString="" layoutX="202.0" layoutY="580.0" opacity="0.58" prefHeight="36.0" prefWidth="73.0" style="-fx-background-color: #808e9b#808e9b;" text="45" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+      <Label fx:id="lblTotal" alignment="CENTER" ellipsisString="" layoutX="321.0" layoutY="580.0" opacity="0.58" prefHeight="36.0" prefWidth="73.0" style="-fx-background-color: #808e9b#808e9b;" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

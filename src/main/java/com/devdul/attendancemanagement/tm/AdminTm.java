@@ -6,15 +6,18 @@ public class AdminTm {
     private String username;
     private String name;
     private String email;
+
+    private String password;
     private Button btn;
 
     public AdminTm() {
     }
 
-    public AdminTm(String username, String name, String email, Button btn) {
+    public AdminTm(String username, String name, String email,String password ,Button btn) {
         this.username = username;
         this.name = name;
         this.email = email;
+        this.password=password;
         this.btn = btn;
     }
 
@@ -40,6 +43,13 @@ public class AdminTm {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Button getBtn() {
