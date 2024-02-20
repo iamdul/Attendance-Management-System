@@ -1,9 +1,7 @@
 package com.devdul.attendancemanagement.Controller;
 
 import com.devdul.attendancemanagement.Model.Admin;
-import com.devdul.attendancemanagement.Model.Student;
 import com.devdul.attendancemanagement.tm.AdminTm;
-import com.devdul.attendancemanagement.tm.StudentTm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,11 +33,7 @@ public class AdminManagementController {
     public TableColumn colName;
     public TableColumn colEmail;
     public TableColumn colOption;
-
-
-
     String searchText="";
-
     public void initialize(){
         colUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -61,7 +55,6 @@ public class AdminManagementController {
                 }
         );
     }
-
     private void setData(AdminTm tm) {
         txtUsername.setText(tm.getUsername());
         txtName.setText(tm.getName());
@@ -69,7 +62,6 @@ public class AdminManagementController {
         txtPassword.setText(tm.getPassword());
         btn.setText("Update Student");
     }
-
     private void setTableData(String searchText) {
         ObservableList<AdminTm> oblist= FXCollections.observableArrayList();
         try{
@@ -82,7 +74,6 @@ public class AdminManagementController {
                         ad.getPassword(),
                         btn
                 );
-
                 btn.setOnAction((e) -> {
                     Alert conf = new Alert(Alert.AlertType.CONFIRMATION,
                             "Are you sure?", ButtonType.YES, ButtonType.NO);
@@ -98,13 +89,11 @@ public class AdminManagementController {
                         }catch (ClassNotFoundException | SQLException e1) {
                             new Alert(Alert.AlertType.ERROR, e1.toString()).show();
                         }
-
                     }
                 });
                 oblist.add(tm);
             }
             tblAdmin.setItems(oblist);
-
         }catch(ClassNotFoundException | SQLException e){
             new Alert(Alert.AlertType.ERROR,e.toString()).show();
         }
@@ -128,7 +117,6 @@ public class AdminManagementController {
                 } else {
                     new Alert(Alert.AlertType.INFORMATION, "Try Again").show();
                 }
-
             } catch (ClassNotFoundException | SQLException e) {
                 new Alert(Alert.AlertType.ERROR, e.toString()).show();
             }
@@ -142,28 +130,21 @@ public class AdminManagementController {
                 }else {
                     new Alert(Alert.AlertType.INFORMATION,"Try Again").show();
                 }
-
             }catch (ClassNotFoundException|SQLException e){
                 new Alert(Alert.AlertType.ERROR,e.toString()).show();
             }
         }
-
     }
-
     private void clear(){
         txtUsername.clear();
         txtPassword.clear();
         txtName.clear();
         txtEmail.clear();
     }
-
     public void addNewAdminOnAction(ActionEvent actionEvent) {
         clear();
         btn.setText("Save Student");
     }
-
-
-
     public void setUi(String location) throws IOException {
         Stage stage = (Stage) context.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/devdul/attendancemanagement/View/" + location + ".fxml"));
@@ -173,7 +154,6 @@ public class AdminManagementController {
         stage.setScene(new Scene(loader.load()));
         stage.centerOnScreen();
     }
-
     public void backOnAction(ActionEvent actionEvent) throws IOException {
         setUi("LoginForm");
     }
@@ -208,11 +188,9 @@ public class AdminManagementController {
                     resultSet.getString(2),
                     resultSet.getString(3),
                     resultSet.getString(4)
-
             ));
         }
         return list;
-
     }
 
     private boolean deleteAdmin(String username)throws ClassNotFoundException, SQLException{
@@ -222,7 +200,6 @@ public class AdminManagementController {
         PreparedStatement statement=connection.prepareStatement("DELETE FROM admin WHERE username=?");
         statement.setString(1,username);
         return statement.executeUpdate()>0;
-
     }
 
     private boolean updateAdmin(Admin admin) throws ClassNotFoundException, SQLException {
@@ -238,6 +215,4 @@ public class AdminManagementController {
         statement.setString(4, admin.getUsername());
         return statement.executeUpdate()>0;
     }
-
-
 }

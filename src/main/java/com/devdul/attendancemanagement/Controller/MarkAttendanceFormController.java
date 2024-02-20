@@ -3,7 +3,6 @@ package com.devdul.attendancemanagement.Controller;
 import com.devdul.attendancemanagement.Model.Record;
 import com.devdul.attendancemanagement.Model.Student;
 import com.devdul.attendancemanagement.tm.RecordTm;
-import com.devdul.attendancemanagement.tm.StudentTm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,8 +14,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.net.URL;
 import java.sql.*;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -36,27 +33,20 @@ public class MarkAttendanceFormController {
 
     public ObservableList<RecordTm> obList = FXCollections.observableArrayList();
 
-
     public void initialize() throws SQLException, ClassNotFoundException {
-
         colIndex.setCellValueFactory(new PropertyValueFactory<>("index"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
 
         setTableData(searchText);
-        System.out.println(searchRecord(txtIndex.getText()).toString());
-
-        System.out.println(obList.toString());
         tblAttendance.setItems(obList);
     }
 
     public void setFields(String index,String email){
         txtIndex.setText(index);
         txtEmail.setText(email);
-
     }
     private void setTableData(String searchText) {
-
         try{
             String stName="";
             for(Record rc:searchRecord(searchText)) {
@@ -71,22 +61,17 @@ public class MarkAttendanceFormController {
                         stName,
                         rc.getTime()
                 );
-
                 obList.add(tm);
             }
             tblAttendance.setItems(obList);
-
         }catch(ClassNotFoundException | SQLException e){
             new Alert(Alert.AlertType.ERROR,e.toString()).show();
         }
     }
-
-
     public RecordTm addOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         LocalTime now = LocalTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         String formattedTime = now.format(formatter);
-
         String stName="";
         List<Record> list=searchRecord(txtIndex.getText());
         if(list.size() ==0){
@@ -101,17 +86,13 @@ public class MarkAttendanceFormController {
                     stName,
                     formattedTime
             );
-
-
             obList.add(tm);
             return tm;
-
         }else{
             new Alert(Alert.AlertType.INFORMATION, "You have already added the attendance").show();
             return null;
         }
     }
-
     public void removeOnAction(ActionEvent actionEvent) {
         boolean found = false;
         Iterator<RecordTm> iterator = obList.iterator();
@@ -138,13 +119,11 @@ public class MarkAttendanceFormController {
             try {
                 if (saveAttendance(record)) {
                     clear();
-                    //setTableData(searchText);
                     new Alert(Alert.AlertType.INFORMATION, "Attendance added").show();
                     setUi("LoginForm");
                 } else {
                     new Alert(Alert.AlertType.INFORMATION, "Try Again").show();
                 }
-
             } catch (ClassNotFoundException | SQLException e) {
                 new Alert(Alert.AlertType.ERROR, e.toString()).show();
             }
@@ -152,7 +131,6 @@ public class MarkAttendanceFormController {
             new Alert(Alert.AlertType.INFORMATION, "You have already added the attendance").show();
             setUi("LoginForm");
         }
-
     }
 
     public void clear(){
@@ -197,10 +175,8 @@ public class MarkAttendanceFormController {
             list.add(new Record(
                     resultSet.getString(1),
                     resultSet.getString(2)
-
             ));
         }
         return list;
-
     }
 }

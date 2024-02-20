@@ -73,7 +73,8 @@ public class LoginFormController {
 
     public void setUi(String location) throws IOException {
         Stage stage = (Stage) context.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/devdul/attendancemanagement/View/" + location + ".fxml"));
+        FXMLLoader loader =
+                new FXMLLoader(getClass().getResource("/com/devdul/attendancemanagement/View/" + location + ".fxml"));
         if (loader.getLocation() == null) {
             System.out.println("Resource is null!");
         }
@@ -82,17 +83,14 @@ public class LoginFormController {
     }
     public void setUiWithParams(String location,String index,String email) throws IOException {
         Stage stage = (Stage) context.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/devdul/attendancemanagement/View/" + location + ".fxml"));
-
-
+        FXMLLoader loader =
+                new FXMLLoader(getClass().getResource("/com/devdul/attendancemanagement/View/" + location + ".fxml"));
         if (loader.getLocation() == null) {
             System.out.println("Resource is null!");
         }
-
         AnchorPane root = loader.load();
         MarkAttendanceFormController markAttendanceFormController = loader.getController();
         markAttendanceFormController.setFields(index, email);
-        //markAttendanceFormController.initialize();
         stage.setScene(new Scene(root));
         stage.centerOnScreen();
     }

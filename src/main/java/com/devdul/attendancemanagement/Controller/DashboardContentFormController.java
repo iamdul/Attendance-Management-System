@@ -3,8 +3,6 @@ package com.devdul.attendancemanagement.Controller;
 import com.devdul.attendancemanagement.Model.Record;
 import com.devdul.attendancemanagement.Model.Student;
 import com.devdul.attendancemanagement.tm.DashboardTm;
-import com.devdul.attendancemanagement.tm.RecordTm;
-import com.devdul.attendancemanagement.tm.StudentTm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,11 +29,8 @@ public class DashboardContentFormController {
     public TableColumn colName;
     public TableColumn colEmail;
     public TableColumn colTime;
-
-
     public ObservableList<DashboardTm> obList= FXCollections.observableArrayList();
     public Button btnClearAll;
-
     String searchText="";
     public void initialize() throws SQLException, ClassNotFoundException {
         colIndex.setCellValueFactory(new PropertyValueFactory<>("index"));
@@ -45,19 +40,14 @@ public class DashboardContentFormController {
 
         setTableData(searchText);
 
-
-
-
         txtSearch.textProperty().addListener((observable, oldValue, newValue) -> {
             searchText=newValue;
             setTableData(searchText);
         });
-
     }
 
     private void setTableData(String searchText) {
         obList.clear();
-
         try {
             for (Student st : StudentManagementController.searchStudent(searchText)) {
                 String stTime = "";
@@ -76,8 +66,6 @@ public class DashboardContentFormController {
                     );
                     obList.add(tm);
                 }
-
-
             }
             tblDashboard.setItems(obList);
             int total = obList.size();
@@ -86,9 +74,6 @@ public class DashboardContentFormController {
             new Alert(Alert.AlertType.ERROR, e.toString()).show();
         }
     }
-
-
-
     public void clearAllOnAction(ActionEvent actionEvent) {
         btnClearAll.setOnAction((e) -> {
             Alert conf = new Alert(Alert.AlertType.CONFIRMATION,
@@ -103,14 +88,11 @@ public class DashboardContentFormController {
                     }else{
                         new Alert(Alert.AlertType.WARNING,"Try Again").show();
                     }
-
-
                 }catch (ClassNotFoundException | SQLException e1){
                     new Alert(Alert.AlertType.ERROR, e1.toString()).show();
                 }
             }
         });
-
     }
     public void backOnAction(ActionEvent actionEvent) throws IOException {
         setUi("LoginForm");

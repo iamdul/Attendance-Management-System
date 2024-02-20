@@ -2,7 +2,6 @@ package com.devdul.attendancemanagement.Controller;
 
 import com.devdul.attendancemanagement.Model.Student;
 import com.devdul.attendancemanagement.tm.StudentTm;
-import com.mysql.cj.xdevapi.JsonParser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,12 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,11 +52,8 @@ public class StudentManagementController {
                     if(null!=newValue){
                         setData((StudentTm) newValue);
                     }
-
                 }
         );
-
-
     }
 
     private void setData(StudentTm tm) {
@@ -83,7 +74,6 @@ public class StudentManagementController {
                 lastIdIntegerAsAnInt++;
                 String generatedStudentIndex = "240-" + lastIdIntegerAsAnInt;
                 txtIndex.setText(generatedStudentIndex);
-
             }else{
                 txtIndex.setText("240-1");
             }
@@ -104,7 +94,6 @@ public class StudentManagementController {
                         st.getPassword(),
                         btn
                 );
-
                 btn.setOnAction((e) -> {
                     Alert conf = new Alert(Alert.AlertType.CONFIRMATION,
                             "Are you sure?", ButtonType.YES, ButtonType.NO);
@@ -121,13 +110,11 @@ public class StudentManagementController {
                         }catch (ClassNotFoundException | SQLException e1) {
                             new Alert(Alert.AlertType.ERROR, e1.toString()).show();
                         }
-
                     }
                 });
                 oblist.add(tm);
             }
             tblStudent.setItems(oblist);
-
         }catch(ClassNotFoundException | SQLException e){
             new Alert(Alert.AlertType.ERROR,e.toString()).show();
         }
@@ -151,7 +138,6 @@ public class StudentManagementController {
                 } else {
                     new Alert(Alert.AlertType.INFORMATION, "Try Again").show();
                 }
-
             } catch (ClassNotFoundException | SQLException e) {
                 new Alert(Alert.AlertType.ERROR, e.toString()).show();
             }
@@ -171,7 +157,6 @@ public class StudentManagementController {
                 new Alert(Alert.AlertType.ERROR,e.toString()).show();
             }
         }
-
     }
 
     private void clear(){
@@ -243,11 +228,9 @@ public class StudentManagementController {
                     resultSet.getString(2),
                     resultSet.getString(3),
                     resultSet.getString(4)
-
             ));
         }
         return list;
-
     }
 
     private boolean deleteStudent(String index)throws ClassNotFoundException, SQLException{
@@ -257,7 +240,6 @@ public class StudentManagementController {
         PreparedStatement statement=connection.prepareStatement("DELETE FROM students WHERE `index`=?");
         statement.setString(1,index);
         return statement.executeUpdate()>0;
-
     }
 
     private boolean updateStudent(Student student) throws ClassNotFoundException, SQLException {
@@ -266,7 +248,6 @@ public class StudentManagementController {
                 DriverManager.getConnection("jdbc:mysql://localhost:3306/attendance","root","1234");
         String sql="UPDATE students SET password=?,email=?,name=? WHERE `index`=?";
         PreparedStatement statement=connection.prepareStatement(sql);
-
         statement.setString(1, student.getPassword());
         statement.setObject(2,student.getEmail());
         statement.setString(3,student.getName());
